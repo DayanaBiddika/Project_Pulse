@@ -13,6 +13,7 @@ const {roleMapping,getSuperAdmin} = require("../controllers/superAdmin.controlle
 // Routes for superUserApp
 
 superAdminApp.put("/user/role", verifySuperAdminToken, roleMapping);
+//get super admin dashboard
 superAdminApp.get("/superadmin",verifySuperAdminToken,getSuperAdmin);
 
 // export superUserApp

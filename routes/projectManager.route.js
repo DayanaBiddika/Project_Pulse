@@ -43,11 +43,17 @@ projectManagerApp.get(
 
 // get the indetail details for specific project
 projectManagerApp.get("/projectManager/portfolioDashboard/:projectId", getSpecificProjectDetails);
+//raise the project concern
 projectManagerApp.post("/projectId/:projectId/raise-project-concern",raiseProjectConcerns)
+//update the project
 projectManagerApp.put("/projectId/:projectId/update-project",updateProject)
+//update the concern
 projectManagerApp.put("/projectManager/:projectId/update-concerns",updateConcern)
+//delete the concern with projectid
 projectManagerApp.delete("/projectManager/:projectId/delete-concern",deleteConcern)
+//update project details with projectid
 projectManagerApp.put("/projectManager/:projectId/update",updateProjectDetails)
+//delete the project details
 projectManagerApp.delete("/projectManager/:projectId/delete",deleteProjectDetails)
 
 // exports

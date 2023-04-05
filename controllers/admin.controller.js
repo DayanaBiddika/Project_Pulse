@@ -13,6 +13,8 @@ const { ProjectConcern } = require("../models/projectConcerns.model");
 // import Team composition model
 const { TeamComposition } = require("../models/teamComposition.model");
 
+const{ResourcingRequest}=require("../models/resourcingRequest.model")
+
 // import User model
 const { User } = require("../models/user.model");
 
@@ -35,16 +37,15 @@ const createProject = expressAsyncHandler(async (req, res) => {
 // get projects
 const getProjects = expressAsyncHandler(async (req, res) => {
   let projects = await Project.findAll({
-    attributes: {
-      exclude: [
-        "projectId",
-        "gdoId",
-        "projectManager",
-        "hrManager",
-        "domain",
-        "typeOfProject",
-      ],
-    },
+    // attributes: {
+    //   exclude: [
+    //     "gdoId",
+    //     "projectManager",
+    //     "hrManager",
+    //     "domain",
+    //     "typeOfProject",
+    //   ],
+    // },
   });
   // if there are no projects
   if (projects.length == 0) {
@@ -98,26 +99,47 @@ const getSpecificProjectDetails = expressAsyncHandler(async (req, res) => {
 });
 //delete project
 const deleteProject=expressAsyncHandler(async(req,res)=>{
+  //get projectid parameter
   let {projectId}=req.params;
+  //delete the project by project id
   let project=await Project.destroy({where:{projectId:projectId}})
   res.status(200).send({message:"project deleted"})
 })
 
 //update project
 const updateProjectByAdmin=expressAsyncHandler(async(req,res)=>{
+  //get projectid,projectname from body
   let {projectId,projectName}=req.body;
   let updates=await Project.findOne({where:{
     projectId: projectId
   }})
+  //check whether project existed or not
   if(updates==undefined){
-    res.status(404).send({message:"user not found"})
+    res.status(404).send({message:"project not found"})
   }
   else{
-    await Project.update({projectName:projectName},{where:{projectId:projectId}})
+    //update the project
+    let result=await Project.update(req.body,{where:{projectId:projectId}})
+    console.log(result)
     res.status(200).send({message:"project updated"})
   }
 })
+//get raising resource request
+const getRaisingRequest=expressAsyncHandler(async(req,res)=>{
+  //find all resourcing request
+  let requests=await ResourcingRequest.findAll()
+  //send res
+  res.status(200).send({message:"all resource requests",payload:requests})
+  
+})
+//get concerns raised
+const getConcerns=expressAsyncHandler(async(req,res)=>{
+  //find all concerns
+  let concerns=await ProjectConcern.findAll();
+  //send res
+  res.status(200).send({message:"all concerns",payload:concerns})
+})
 
 // export controllers
-module.exports = { getProjects, getSpecificProjectDetails, createProject,deleteProject,updateProjectByAdmin};
+module.exports = { getProjects, getSpecificProjectDetails, createProject,deleteProject,updateProjectByAdmin,getRaisingRequest,getConcerns};
 

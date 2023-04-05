@@ -50,14 +50,13 @@ const getProjects = expressAsyncHandler(async (req, res) => {
   // get the gdoId from url
   let gdoIdFromUrl = req.params.gdoId;
   // query to find all the projects for the gdoId
+  console.log("-----",gdoIdFromUrl)
   let projectRecord = await Project.findAll({
     where: {
       gdoId: gdoIdFromUrl,
     },
     attributes: {
       exclude: [
-        "projectId",
-        "gdoId",
         "projectManager",
         "hrManager",
         "domain",
@@ -126,6 +125,7 @@ const getSpecificProjectDetails = expressAsyncHandler(async (req, res) => {
 //get projects
 const getProjectsUnderGdo=expressAsyncHandler(async(req,res)=>{
   let projects=await Project.findOne({where:{projectId:req.params.projectId},
+    //include associations-eager loading
     include:[
       {
         association:Project.TeamComposition
@@ -136,10 +136,12 @@ const getProjectsUnderGdo=expressAsyncHandler(async(req,res)=>{
       }
     ]
   })
+  //send response
   res.status(200).send({message:"projects under gdo",payload:projects})
 })
 //get all projects
 const getProjectsUnderGdos=expressAsyncHandler(async(req,res)=>{
+  //from project table
   let projects=await Project.findAll({include:[{
     association:Project.TeamComposition
 },{
@@ -148,6 +150,7 @@ const getProjectsUnderGdos=expressAsyncHandler(async(req,res)=>{
         association:Project.ProjectConcern
       },
     ]})
+    //send res
   res.status(200).send({message:"projects under gdo",payload:projects})
 })
 

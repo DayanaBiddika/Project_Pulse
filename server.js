@@ -4,6 +4,11 @@ const express = require("express");
 // create express obj application
 const app = express();
 
+//import helmet which used to protect the application and it is middleware
+const helmet=require('helmet')
+
+app.use(helmet())
+
 // import dotenv
 require("dotenv").config();
 
@@ -28,10 +33,13 @@ const projectManagerApp = require("./routes/projectManager.route");
 const PORT=process.env.PORT||2828
 
 // check sequelize connection
-sequelize
-  .authenticate()
+sequelize.authenticate()
   .then(() => console.log("DB connected successfully..."))
   .catch((err) => console.log("DB connection failed..."));
+
+  //connecting build of react app to server of backend
+const path=require("path")
+app.use(express.static(path.join(__dirname,'../build')))
 
 // sync the sequelize
 sequelize.sync({});
@@ -54,6 +62,10 @@ app.use("/gdo-api", gdoApp);
 // path middleware for projectManager
 app.use("/projectManager-api", projectManagerApp);
 
+//page refresh
+app.use((req,res)=>{
+  res.sendFile(path.join(__dirname,"../build/index.html"))
+})
 // invalid path
 app.use("*", (req, res) => {
   res.send({ message: "Invalid path" });
@@ -62,6 +74,7 @@ app.use("*", (req, res) => {
 app.use((err, req, res, next) => {
   res.send({ message: err.message });
 });
+
 
 //export the app
 module.exports=app;

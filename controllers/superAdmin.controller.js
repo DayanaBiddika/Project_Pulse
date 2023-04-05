@@ -33,8 +33,9 @@ const roleMapping = expressAsyncHandler(async (req, res) => {
 
 //get dashboard of super admin
 const getSuperAdmin=expressAsyncHandler(async(req,res)=>{
-  let users=await User.findAll({attributes:{exclude:['role','password']}})
-  console.log("----------------------",users)
+  //get all the users 
+  let users=await User.findAll({attributes:{exclude:['password']}})
+  //send res
   res.status(200).send({message:"users",payload:users})
 })
 

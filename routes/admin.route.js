@@ -12,6 +12,8 @@ const {
   createProject,
   deleteProject,
   updateProjectByAdmin,
+  getRaisingRequest,
+  getConcerns,
 } = require("../controllers/admin.controller");
 
 // routes for admin after login
@@ -30,7 +32,12 @@ adminApp.get(
 adminApp.post("/admin/project", verifyAdminToken,createProject);
 //delete project
 adminApp.delete("/admin/project/:projectId",deleteProject)
+//update project
 adminApp.put("/admin/project/:projectId",updateProjectByAdmin)
+//get raising req
+adminApp.get("/admin/project/raising-request",getRaisingRequest)
+//get concerns
+adminApp.get("/admin/project/get-concerns",getConcerns)
 
 // export adminApi
 module.exports = adminApp;

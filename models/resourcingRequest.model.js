@@ -3,10 +3,10 @@ const sequelize = require("../DB/db.config");
 const { DataTypes } = require("sequelize");
 
 // import User model
-const { User } = require("../models/user.model");
+const { User } = require("./user.model");
 
 // import Project model
-const { Project } = require("../models/project.model");
+const { Project } = require("./project.model");
 
 // create schema for resourcing request
 exports.ResourcingRequest = sequelize.define("resourcingRequests",{

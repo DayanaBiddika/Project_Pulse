@@ -1,12 +1,13 @@
 // import expressAsyncHandler
 const expressAsyncHandler = require("express-async-handler");
+require("dotenv").config();
 const nodemailer = require('nodemailer');
 //create connection to smtp
 const transporter = nodemailer.createTransport({
-  service: "gmail",
+  service: process.env.EMAIL_SERVICE_PROVIDER,
   auth: {
-    user: "dayyubiddika095@gmail.com",
-    pass: "lscsslsurjfqrtab" // app password
+    user: process.env.EMAIL,
+    pass: process.env.EMAIL_PASSWORD // app password
   }
 })
 //Creating otps object
@@ -24,6 +25,7 @@ const { Employee } = require("../models/employee.model");
 // import user model
 const { User } = require("../models/user.model");
 
+//register
 const registerUser = expressAsyncHandler(async (req, res) => {
   // get the body from request
   let { userId, email, username, password } = req.body;
@@ -37,7 +39,7 @@ const registerUser = expressAsyncHandler(async (req, res) => {
 
   // if the user is not existed in our company then restrict the resgitration process
   if (userExisted == undefined) {
-    res.status(401).send({message: "Unauthorized access" });
+    res.send({message: "Unauthorized access" });
   }
 
   // if the user existed 
@@ -90,10 +92,12 @@ const loginUser = expressAsyncHandler(async (req, res) => {
         },
         process.env.SECRET_KEY,
         {
+          //token expires
           expiresIn: "1d",
         }
       );
-      res.status(200).send({ message: "Login successfull", payload: signedToken,userRecord});
+      //send res
+      res.status(200).send({ message: "success", payload: signedToken,userRecord,user:userRecord});
     }
   }
 });
@@ -105,13 +109,20 @@ const forgetPassword=expressAsyncHandler(async(req,res)=>{
   otps[req.body.email]=otp
   //draft email
   let mailOptions = {
-      from: 'dayyubiddika095@gmail.com',
+    //from which mail
+      from: process.env.EMAIL,
+      //the mail which we have given in req http
       to: req.body.email,
+      //subject
       subject: 'OTP to reset password',
+      //text which need to be send to mail
       text: `Hello ,
        We received a request to reset your password .Enter the following OTP to reset your password :
         `+otp
+        
     }
+     console.log(otp)
+    
   //send email
     transporter.sendMail(mailOptions, function(error, info){
       if (error) {
@@ -124,7 +135,8 @@ const forgetPassword=expressAsyncHandler(async(req,res)=>{
   setTimeout(()=>{
       //delete OTP from object after 10 minutes
       delete otps[req.body.email]
-  },700000)
+  },70000000)
+  //send res
   res.status(200).send({message:"OTP to reset your password is sent to your email"})
 })
 //reset password
@@ -132,12 +144,18 @@ const resetPassword=expressAsyncHandler(async(req,res)=>{
   //otp matches
   if(req.body.otp==otps[req.params.email]){
       console.log("password verififed");
-      await User.update({password:req.body.password},{where:{
+
+      let hashedPassword = await bcryptjs.hash(req.body.password, 6);
+      
+      //update the password
+      await User.update({password:hashedPassword},{where:{
           email:req.params.email
       }})
+      //send res
       res.status(200).send({message:"Password reset sucessfully"})
   }
   else{
+    //send res
       res.status(200).send({message:"Invalid OTP"})
   }
 })

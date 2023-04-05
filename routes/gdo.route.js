@@ -33,7 +33,9 @@ gdoApp.get(
   verifyGDOToken,
   getSpecificProjectDetails
 );
+//get projects with specific id
 gdoApp.get("/gdo/:projectId/get-projects",getProjectsUnderGdo)
+//get all projects under gdo
 gdoApp.get("/gdo/get-projects",getProjectsUnderGdos)
 
 // exports

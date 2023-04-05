@@ -3,20 +3,20 @@ POST http://localhost:2828/user-api/user
 Content-Type: application/json
 
 {
-  "userId":800,
-  "email":"abcd@westagilelabs.com",
-  "username":"abcd",
-  "password":"abcd"
+  "userId":1000,
+  "email":"sunitha@westagilelabs.com",
+  "username":"sunitha",
+  "password":"sunitha"
 }
 
 ###SUPER ADMIN MAPPING USER TO ROLE
 PUT http://localhost:2828/superAdmin-api/user/role
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMCwidXNlclJvbGUiOiJzdXBlckFkbWluIiwiaWF0IjoxNjc4NjgzMTg4LCJleHAiOjE2Nzg3Njk1ODh9.n3IIAI0AmX9DaZTGH8PE3KMBORliLN7Spa0b8D0u4EY
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMCwidXNlclJvbGUiOiJzdXBlckFkbWluIiwiaWF0IjoxNjc5OTk4ODk0LCJleHAiOjE2ODAwODUyOTR9.pZV6N43o_4xe-J7BcaUbKsLKwDN3zDbBlQmZCM0Zef4
 Content-Type: application/json
 
 {
-  "userId":600,
-  "role":"front end" 
+  "userId":1200,
+  "role":"project manager" 
 }
 
 ###USER LOGIN
@@ -24,8 +24,8 @@ POST http://localhost:2828/user-api/user/login
 Content-Type: application/json
 
 {
-    "userId":300,
-	"password":"pavani"
+    "userId":900,
+	  "password":"dayyu"
 }
 
 ###FORGOT PASSWORD TRIGGER A EMAIL
@@ -33,36 +33,34 @@ POST http://localhost:2828/user-api/forget-password
 Content-Type: application/json
 
 {
-    "email":"dayyubiddika@gmail.com"
+    "email":"pavan@westagilelabs.com"
 }
 
 ###RESET PASSWORD
-POST http://localhost:2828/user-api/reset-password/email/dayyubiddika@gmail.com
+POST http://localhost:2828/user-api/reset-password/email/pavan@westagilelabs.com
 Content-Type: application/json
 
 {
-    "otp":539012,
-    "password":"dayyuharsha"
+    "otp":374645,
+    "password":"dayyu"
 }
 
-### GET SUPER ADMIN
+### GET USERS
 GET http://localhost:2828/superAdmin-api/superadmin
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMCwidXNlclJvbGUiOiJzdXBlckFkbWluIiwiaWF0IjoxNjc4Njg3NjM4LCJleHAiOjE2Nzg3NzQwMzh9.ySqv2QTrlLEJuDMeIIMyT_5oAsojhjuLHmMtgEcgfFk
-
-
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMCwidXNlclJvbGUiOiJzdXBlckFkbWluIiwiaWF0IjoxNjgwNTg0MTA1LCJleHAiOjE2ODA2NzA1MDV9.bSrnFQNA9tV7Bn2OznNcak9VR45G9e5ks59WBa_VsJg
 ###ADMIN CREATE THE PROJECT AND ASSIGN GDO, PROJECTMANAGER AND HRMANAGER TO THE PROJECT
 POST http://localhost:2828/admin-api/admin/project
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIwMCwidXNlclJvbGUiOiJBZG1pbiIsImlhdCI6MTY3ODYwMjc3NywiZXhwIjoxNjc5NDY2Nzc3fQ.BMiczs6ZFiDxsLbqSBAOG0mjJmnArvmA1qG18wgtj2U
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIwMCwidXNlclJvbGUiOiJBZG1pbiIsImlhdCI6MTY4MDE2MTc4OSwiZXhwIjoxNjgwMjQ4MTg5fQ.R56wKjMC8XwfKAgqc7jPnzq2gnAybe_VYlpm2NllYIY
 Content-Type: application/json
 
 {
-  "projectId":1,
-  "projectName":"backend project",
-  "client":3000,
-  "gdoId":100,
+  "projectId":15,
+  "projectName":"test-project",
+  "client":4000,
+  "gdoId":300,
   "projectManager":400,
   "hrManager":500,
-  "clientAccountManager":"jahnavi",
+  "clientAccountManager":"dayyu",
   "statusOfProject":"on going",
   "startDate":"2023/10/31",
   "endDate":"2023/12/30",
@@ -74,34 +72,30 @@ Content-Type: application/json
 
 ###GET ALL PROJECTS BY CLICKING ON PORTFOLIO DASHBOARD
 GET http://localhost:2828/admin-api/admin/portfolioDashboard
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIwMCwidXNlclJvbGUiOiJBZG1pbiIsImlhdCI6MTY3ODYwMjcxNCwiZXhwIjoxNjc5NDY2NzE0fQ.o7TxZYGpDeEYQEhfLoh9aKx4LNnRFLwYcZCvmXYJCkk
-
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIwMCwidXNlclJvbGUiOiJBZG1pbiIsImlhdCI6MTY4MDU4NTU3OCwiZXhwIjoxNjgwNjcxOTc4fQ.U6ZIMPUAhcKYCiZmBap3Pl_C6IigmyeeqQ96GkNJ6Kk
 ###GET SPECIFIC PROJECT DETAILS BY CLICKING ON SPECIFIC PROJECT FROM PORFOLIO DASHBOARD
 GET http://localhost:2828/admin-api/admin/portfolioDashboard/1
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIwMCwidXNlclJvbGUiOiJBZG1pbiIsImlhdCI6MTY3ODYwMjcxNCwiZXhwIjoxNjc5NDY2NzE0fQ.o7TxZYGpDeEYQEhfLoh9aKx4LNnRFLwYcZCvmXYJCkk
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIwMCwidXNlclJvbGUiOiJBZG1pbiIsImlhdCI6MTY4MDE0OTY2MywiZXhwIjoxNjgwMjM2MDYzfQ.T5FGaz1CCjlQ9OhVOdPTQRTPcDNhQccZ4hqSVS8Qv_A
 
 
 ### FOR GDO LOGIN
 
 ###GET ALL PROJECTS UNDER GDO MAINTANANCE
-GET http://localhost:2828/gdo-api/100/portfolioDashboard 
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMwMCwidXNlclJvbGUiOiJHRE8gaGVhZCIsImlhdCI6MTY3ODYwMzE1MywiZXhwIjoxNjc5NDY3MTUzfQ.nbaf1NX_JH5xVtyV8DbAYxor1EBeAClu1qW2IpqaTFc
-
+GET http://localhost:2828/gdo-api/1200/portfolioDashboard 
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEyMDAsInVzZXJSb2xlIjoiR0RPIGhlYWQiLCJpYXQiOjE2ODAwNjI2MDQsImV4cCI6MTY4MDE0OTAwNH0.k8y4XRFtO0Twf_adOI-DYL9CfEkG9Ss8mNYfEoNgERs
 ###GET SPECIFIC PROJECT DETAILS BY CLICKING ON SPECIFIC PROJECT FROM PORFOLIO DASHBOARD
-GET http://localhost:2828/gdo-api/100/portfolioDashboard/2
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMwMCwidXNlclJvbGUiOiJHRE8gaGVhZCIsImlhdCI6MTY3ODYwMzMwMiwiZXhwIjoxNjc5NDY3MzAyfQ.IznuQ38DhnLQdiFTiJGt1rcQtYc2yxApCn19hVhH0zU 
-
-
-### ASSIGN PROJECT TO AN EMPLOYEE BY GDO
+GET http://localhost:2828/gdo-api/900/portfolioDashboard/
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMwMCwidXNlclJvbGUiOiJHRE8gaGVhZCIsImlhdCI6MTY4MDE1MDczMiwiZXhwIjoxNjgwMjM3MTMyfQ.m2WrFY_gpUR8bEVAQEurydbMU-9fVikyFkWWyEHKqvo
+### ASSIGN TEAM TO AN EMPLOYEE BY GDO
 POST http://localhost:2828/gdo-api/gdo/projectTeam
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMwMCwidXNlclJvbGUiOiJHRE8gaGVhZCIsImlhdCI6MTY3ODcwNzQ5NCwiZXhwIjoxNjc4NzkzODk0fQ.jkXHfBbTgv_DClaY5wP9DDbMWg2lGBWmAsfjYzfIXwc
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMwMCwidXNlclJvbGUiOiJHRE8gaGVhZCIsImlhdCI6MTY4MDA2NTg3NSwiZXhwIjoxNjgwMTUyMjc1fQ.W3hsCIWs088nFSsZ5o-DT7DiXzv8--qhEcHlqmF1eCo
 Content-Type: application/json
 
 {
-  "empId":600,
-  "projectId":2,
-  "username":"venky",
-  "role":"tester",
+  "empId":1200,
+  "projectId":6,
+  "username":"pavan",
+  "role":"devops",
   "startDate":"2023/03/08",
   "endDate":"2023/07/23",
   "status":"In Progress",
@@ -120,13 +114,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMwMCwid
 
 ###RAISE RESOURCING REQUEST BY GDO
 POST http://localhost:2828/gdo-api/gdo/resourcingRequest
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMwMCwidXNlclJvbGUiOiJHRE8gaGVhZCIsImlhdCI6MTY3ODYwMzQ2OSwiZXhwIjoxNjc5NDY3NDY5fQ.9QKXuVHboZcf7KVpAwXZ9VWNAGPliPD3-72XkcghI9o
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjkwMCwidXNlclJvbGUiOiJnZG8gaGVhZCIsImlhdCI6MTY3ODc5NDI0MiwiZXhwIjoxNjc4ODgwNjQyfQ.8sX78lUkXY26z5Sbd6CrmA5_DgjBe4E3_34mB684ldc
 Content-Type: application/json
 
 {
-  "gdoId" :100,
-  "projectId":2,
-  "requestDescription":"takes time to complete"
+  "gdoId" :900,
+  "projectId":6,
+  "requestDescription":"resources are needed"
 }
 
 ###FOR PROJECT MANAGER LOGIN
@@ -137,7 +131,7 @@ Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQwMCwid
 Content-Type: application/json
 
 {
-  "projectId":1,
+  "projectId":20,
   "projectManager":400,
   "date":"2023/04/20",
   "projectStatusUpdate":"New feature updated",
@@ -160,28 +154,27 @@ Content-Type: application/json
   "onDate":"2023/07/10",
   "severity":"Abnormal",
   "raisedInternallyOrNot":"Yes",
-  "statusOfConcern":"pending",
+  "statusOfConcern":"pending",  
   "concernMitigatedOnDate":"2023/08/15"
 }
 
 ###GET ALL PROJECTS UNDER PROJECTMANAGER
 GET http://localhost:2828/projectManager-api/400/portfolioDashboard
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQwMCwidXNlclJvbGUiOiJwcm9qZWN0IG1hbmFnZXIiLCJpYXQiOjE2Nzg2MDM5ODEsImV4cCI6MTY3OTQ2Nzk4MX0.JGATVIQoHBdgrUpheLYikFQNOLMfzreu2ka7x4AMwlw
-
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQwMCwidXNlclJvbGUiOiJwcm9qZWN0IG1hbmFnZXIiLCJpYXQiOjE2ODAwNzIxODgsImV4cCI6MTY4MDE1ODU4OH0.ztU-Ygu8X4ChPIDMhs8lOl1qss429VTzym8HN4thUtc
 ###GET DETAILED PROJECTS DETAILS UNDER PROJECTMANAGER FOR SPECIFIC PROJECT
 GET http://localhost:2828/projectManager-api/projectManager/portfolioDashboard/2
 Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQwMCwidXNlclJvbGUiOiJwcm9qZWN0IG1hbmFnZXIiLCJpYXQiOjE2Nzg2MDM5ODEsImV4cCI6MTY3OTQ2Nzk4MX0.JGATVIQoHBdgrUpheLYikFQNOLMfzreu2ka7x4AMwlw
 
 ###DELETE PROJECT BASED ON PROJECTID BY ADMIN
-DELETE http://localhost:2828/admin-api/admin/project/1
+DELETE http://localhost:2828/admin-api/admin/project/3
 
 ###RAISE PROJECT CONCERNS AND TRIGGER A EMAIL
-POST http://localhost:2828/projectManager-api/projectId/2/raise-project-concern
+POST http://localhost:2828/projectManager-api/projectId/6/raise-project-concern
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMwMCwidXNlclJvbGUiOiJHRE8gaGVhZCIsImlhdCI6MTY3ODY5NjczMiwiZXhwIjoxNjc4NzgzMTMyfQ.m642Qtc8ZCYABjY3BQTWG7EenSY40vq30mn36xnF178
 
 {
-  "projectId":2,
+  "projectId":6,
   "concernDescription":"More systems required",
   "raisedBy":"likki@westagilelabs.com",
   "raisedOnDate":"2023/03/04",
@@ -202,13 +195,14 @@ Content-Type: application/json
 }
 
 ###UPDATE PROJECT BY ADMIN
-PUT http://localhost:2828/admin-api/admin/project/1
+PUT http://localhost:2828/admin-api/admin/project/4
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIwMCwidXNlclJvbGUiOiJBZG1pbiIsImlhdCI6MTY3ODcwMDIzOCwiZXhwIjoxNjc4Nzg2NjM4fQ.FMqd4ho392N0juU598oYJ7DhocoV8D9U9R_2LSSQAyc
 Content-Type: application/json
 
 {
-    "projectId":1,
-    "projectName":"project pulse"
+    "projectId":4,
+    "projectName":"angular project",
+    "clientAccountManager":"anu"
 }
 
 ###UPDATE CONCERN BY PROJECT MANAGER
@@ -238,6 +232,15 @@ Content-Type: application/json
 ###DELETE PROJECT UPDATES
 DELETE http://localhost:2828/projectManager-api/projectManager/2/delete
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQwMCwidXNlclJvbGUiOiJwcm9qZWN0IG1hbmFnZXIiLCJpYXQiOjE2Nzg3MDExNDYsImV4cCI6MTY3ODc4NzU0Nn0.6ceRndbdCmRCZmucs4zmtCmo66zWrbfcFoK3Prqb6a8
+
+###GET RAISING REQUEST BY ADMIN
+GET http://localhost:2828/admin-api/admin/project/raising-request
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIwMCwidXNlclJvbGUiOiJBZG1pbiIsImlhdCI6MTY3ODc5MTYxOSwiZXhwIjoxNjc4ODc4MDE5fQ.a-dA-Wi3rzxW6P1-l4Ds4AUVxHVCvUzzdQDcOtnPalw
+
+
+###GET CONCERNS BY ADMIN
+GET http://localhost:2828/admin-api/admin/project/get-concerns
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIwMCwidXNlclJvbGUiOiJBZG1pbiIsImlhdCI6MTY3ODc5MTYxOSwiZXhwIjoxNjc4ODc4MDE5fQ.a-dA-Wi3rzxW6P1-l4Ds4AUVxHVCvUzzdQDcOtnPalw
 
 
 
